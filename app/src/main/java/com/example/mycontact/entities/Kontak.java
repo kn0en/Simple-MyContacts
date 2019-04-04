@@ -4,7 +4,7 @@ public class Kontak {
 
     private int id;
     private String nama;
-    private int nomor;
+    private String nomor;
 
     public Kontak() {
         this.id = -1;
@@ -26,11 +26,11 @@ public class Kontak {
         this.nama = nama;
     }
 
-    public int getNomor() {
+    public String getNomor() {
         return nomor;
     }
 
-    public void setNomor(int nomor) {
+    public void setNomor(String nomor) {
         this.nomor = nomor;
     }
 }

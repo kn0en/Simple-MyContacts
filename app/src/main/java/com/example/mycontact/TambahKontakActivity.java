@@ -12,6 +12,9 @@ import com.example.mycontact.models.KontakModel;
 
 public class TambahKontakActivity extends AppCompatActivity {
 
+    // Data
+    private KontakModel mKontak;
+
     // Komponen
     private EditText txtNama;
     private EditText txtNomor;
@@ -30,6 +33,7 @@ public class TambahKontakActivity extends AppCompatActivity {
     private void initData()
     {
 // Sementara dikosongkan dulu..
+        this.mKontak = new KontakModel(this);
     }
 
     private void initComponents()
@@ -55,5 +59,13 @@ public class TambahKontakActivity extends AppCompatActivity {
     private void tambahKontak()
     {
 // Disini dilakukan penyimpanan kontak baru ke database
+        String nama = this.txtNama.getText().toString();
+        String nomor = this.txtNomor.getText().toString();
+        Kontak kontakBaru = new Kontak();
+        kontakBaru.setNama(nama);
+        kontakBaru.setNomor(nomor);
+        this.mKontak.insert(kontakBaru);
+        Toast.makeText(this, "Kontak berhasil ditambahkan", Toast.LENGTH_SHORT).show();
+        this.btnBatal.setText("Kembali");
     }
 }
