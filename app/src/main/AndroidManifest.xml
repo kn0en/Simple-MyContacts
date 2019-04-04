@@ -9,9 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailKontakActivity"></activity>
-        <activity android:name=".TambahKontakActivity" />
-        <activity android:name=".LihatKontakActivity" />
+        <activity android:name=".DetailKontakActivity" android:noHistory="true"/>
+        <activity android:name=".TambahKontakActivity" android:noHistory="true"/>
+        <activity android:name=".LihatKontakActivity" android:noHistory="true"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

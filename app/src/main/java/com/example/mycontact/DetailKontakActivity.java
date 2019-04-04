@@ -1,8 +1,10 @@
 package com.example.mycontact;
 
+
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,11 +56,6 @@ public class DetailKontakActivity extends AppCompatActivity {
         this.txtNomor.setText(this.selectedKontak.getNomor());
     }
 
-    private void openLihatKontakActivity() {
-        Intent i = new Intent(this, LihatKontakActivity.class);
-        this.startActivity(i);
-    }
-
     public void button_onClick(View view)
     {
         Button b = (Button) view;
@@ -72,7 +69,8 @@ public class DetailKontakActivity extends AppCompatActivity {
         }
         else if(b == this.btnKembali)
         {
-            this.openLihatKontakActivity();
+            this.recreateActivityCompat();
+
         }
     }
 
@@ -86,6 +84,8 @@ public class DetailKontakActivity extends AppCompatActivity {
 
         this.mKontak.update(this.selectedKontak);
         this.resetFields("Data berhasil diperbarui!", false);
+        this.recreateActivityCompat();
+
     }
 
     private void hapusKontak()
@@ -94,15 +94,21 @@ public class DetailKontakActivity extends AppCompatActivity {
         this.mKontak.delete(this.selectedKontak);
         this.resetFields("Kontak dihapus..", true);
         this.btnHapus.setEnabled(false);
+        this.recreateActivityCompat();
     }
 
     private void resetFields(String pesan, boolean clear)
     {
         Toast.makeText(this, pesan, Toast.LENGTH_SHORT).show();
-        if(clear)
-        {
-            this.txtNama.setText("");
-            this.txtNomor.setText("");
-        }
     }
+
+    private void recreateActivityCompat() {
+        Intent reOpen = new Intent (this, LihatKontakActivity.class);
+        overridePendingTransition( 0, 0);
+        this.startActivity(reOpen);
+        this.finish();
+        overridePendingTransition( 0, 0);
+
+    }
+
 }
